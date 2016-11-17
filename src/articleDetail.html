@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,minimal-ui">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*.open.dev.mtcentcloud.com">
+    <link rel="stylesheet" href="css/reset.css"/>
+    <title>资讯详情</title>
+    <style>
+        .top-nav{
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 44px;
+            background: #fa7e00;
+            text-align: center;
+            display: table;
+        }
+        .top-nav h3{
+            display:table-cell;
+            vertical-align: middle;
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+        .top-nav img{
+            position: absolute;
+            left: 10px;
+            top: 10px;
+        }
+        .con{
+            padding: 10px 10px;
+            margin-top: 44px;
+        }
+        .con .title{
+            font-size: 22px;
+            width: 100%;
+            text-align: left;
+            line-height: 30px;
+
+        }
+        .sub_title{
+            margin-top: 10px;
+
+        }
+        .sub_title .createdTime,source{
+            font-size: 14px;
+        }
+        .content p {
+            margin: 16px 0;
+            line-height: 1.5;
+            font-size: 16px;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+<div class="top-nav">
+    <h3>硬见详情</h3>
+    <img  id="feedback" src="res/back.png" width="16px" height="25px" style="cursor:pointer;" alt="#"/>
+</div>
+<div class="con">
+    <div id="title" class="title"></div>
+    <div class="sub_title">
+        <span id="createdTime" class="createdTime"></span>
+        <span id="source" class="source"></span>
+    </div>
+    <div id="content" class="content"></div>
+</div>
+
+<script src="lib/zepto.min.js"></script>
+<script>
+    window.jQuery = $;
+</script>
+<script src="./js/jquery.jsonp.js"></script>
+<script src="./js/jquery.base64.js"></script>
+<script>
+    (function(){
+        'use strict';
+
+        var Util = (function() {
+            //todo 获取url参数
+            function getUrlParm(sParm){
+                var sPageURL = decodeURI(window.location.search.substring(1));
+                var sURLvariables = sPageURL.split('&');
+                for(var i = 0; i < sURLvariables.length;i++){
+                    var sParmName = sURLvariables[i].split('=');
+                    if(sParmName[0] == sParm){
+                        return sParmName[1];
+                    }
+                }
+                return null;
+            }
+            return {
+                getUrlParm : getUrlParm
+            }
+        })();
+        //todo 获取资讯内容
+        function getArticleContent(articleGuid,productGuid){
+            if(typeof (articleGuid) == "undefined"|| articleGuid == null || articleGuid.length == 0){
+                return;
+            }
+            var yingYongBaoUrl;
+            var digest;
+            var imgUrl;
+            var listTitle;
+            var scheme;
+            $.ajax({
+                async:true,
+                url :'https://open.mtcentcloud.com/getArticleContentToPhone',
+                type :"GET",
+                dataType : 'jsonp',
+                jsonp:'callback',
+                data:{
+                    article_guid : articleGuid
+                },
+                timeout : 5000,
+                success : function(data) {
+                    if (parseInt(data.code) == 200){
+//                        alert('adfafa');
+                        var logInfo = '';
+                        var article = data.result;
+                        var title = article.name;
+                        var createdTime = article.createdTime;
+                        var dictSourceName = article.source;
+                        var content = article.content;
+                        $("#title").html(title);
+                        $("#createdTime").html(createdTime);
+                        $("#source").html(dictSourceName);
+                        $("#content").html(content);
+
+                        digest = article.brief;
+                        imgUrl = article.pictureUrl;
+                        if (typeof (article.listTitle) != "undefined" && article.listTitle != null || article.listTitle != "") {
+                            listTitle = article.listTitle;
+                        } else {
+                            listTitle = article.name;
+                        }
+
+                    }
+                }
+            });
+//            $.ajax({
+//                type:"GET",
+//                url:'https://open.mtcentcloud.com' + '/getArticleContent/' + articleGuid + "?callback=?",
+//                dataType:'json',
+//                sucess:function(data){
+//                    if(data.code == 200){
+
+//                    }
+//                },
+//                error: function () {
+//                    alert("取得资讯内容失败");
+//                }
+//
+//            });
+        }
+        function main(){
+            //todo 返回上一页
+            var back = $('#feedback').click(function(){
+               history.go(-1);
+            });
+
+            var articleGuid = Util.getUrlParm("article_guid");
+            var productGuid = Util.getUrlParm("product_guid");
+            getArticleContent(articleGuid,productGuid);
+//            alert(articleGuid);
+
+
+        }
+
+        return main();
+
+    })();
+</script>
+
+
+
+</body>
+</html>

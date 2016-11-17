@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,minimal-ui">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*.open.dev.mtcentcloud.com">
+    <link rel="stylesheet" href="css/reset.css"/>
+    <title>资讯</title>
+
+    <style type="text/css">
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .bottom-nav-bk {
+            position: fixed;
+            bottom: 0px;
+            height: 49px;
+            background: #EFEFF4;
+            width: 100%;
+            opacity: .9;
+            z-index: 10004
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0px;
+            height: 49px;
+            background: none;
+            width: 100%;
+            opacity: 1;
+            z-index: 10004;
+            margin: 0 auto;
+            text-align: center;
+            border-top: 1px solid #D5D5D5;
+        }
+        .bottom-nav .item {
+            display: inline-block;
+            width: 23%;
+            color: #666666;
+            text-align: center;
+            margin: 0 auto;
+            font-size: 12px;
+        }
+        .bottom-nav .item-warp{
+            margin-top: 8px;
+        }
+        .bottom-nav .item-warp .icon-text{
+            margin-top: -6px;
+        }
+        .top-nav{
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 44px;
+            background: #fa7e00;
+            text-align: center;
+            display: table;
+        }
+        .top-nav h3{
+            display:table-cell;
+            vertical-align: middle;
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+        .top-nav img{
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+        .content-warp{
+            margin-top: 44px;
+            margin-bottom: -49px;
+        }
+        .headerScroll{
+            /*margin-bottom:1px solid #D5D5D5;*/
+            border-bottom: 1px solid #D5D5D5;
+            height: 40px;
+            width: 100%;
+            display: table;
+        }
+        .headerScroll ul{
+            display: table-cell;
+            vertical-align: middle;
+        }
+        .headerScroll ul li{
+            display:inline-block;
+            width: 18%;
+            text-align: center;
+            padding: 9px 0;
+        }
+        .liselected{
+            border-bottom: 2px solid #fa7e00;
+        }
+        .headerScroll ul li a{
+            font-size: 14px;
+        }
+        html{
+            background: #ffffff;
+        }
+        .article-list{
+            /*top: 84px;*/
+            /*position: absolute;*/
+            width: 100%;
+            overflow: hidden;
+            margin-bottom: 49px;
+            /*bottom: 49px;*/
+            /*z-index: 888;*/
+        }
+        .article-list ul li{
+            cursor: pointer;
+            width: 100%;
+            padding: 9px 10px;
+            border-bottom: 1px solid #D5D5D5;
+            display: inline-block;
+
+        }
+        .article-list ul li .cell-left{
+            width: 100px;
+            float: left;
+
+
+        }
+        .article-list ul li .cell-right{
+            width: calc(100% - 100px);
+            text-align: left;
+            /*text-indent: -20px;*/
+            float: right;
+
+
+        }
+        .article-list ul li .cell-right h4{
+            font-size: 16px;
+        }
+        .article-list ul li .cell-right p{
+            padding: 0 0 0 10px
+            font-size: 14px;
+            margin-top: 5px;
+            /*background: yellow;*/
+            width: calc(100% - 10px);
+        }
+        #navi-headerscroll li{
+            padding: 9px 0;
+        }
+
+    </style>
+
+</head>
+<body>
+<div class="top-nav">
+    <h3>资讯</h3>
+    <img src="res/search.png" width="25px" height="25px" style="cursor:pointer;" alt="#"/>
+</div>
+<div class="content-warp">
+    <div class="headerScroll">
+        <ul id="navi-headerscroll">
+            <!--<li class= "navititle liselected"><a href="#">推荐</a></li>-->
+            <!--<li><a href="#">业界动态</a></li>-->
+            <!--<li><a href="#">技术</a></li>-->
+            <!--<li><a href="#">创业分享</a></li>-->
+            <!--<li><a href="#">市场</a></li>-->
+        </ul>
+    </div>
+    <div class="article-list" id="article-list">
+        <ul id="article-list-ul">
+            <!--<li>-->
+                <!--<div class="cell-left">-->
+                    <!--<img src="res/news_hlt_0.png" width="90px" height="66px" style="vertical-align: middle" alt=""/>-->
+                <!--</div>-->
+                <!--<div class="cell-right">-->
+                    <!--<h4>美国迪士尼啊啊啊啊啊啊</h4>-->
+                    <!--<p>自营特然啥都发发是否撒打算发大是大非阿萨德法师法</p>-->
+                <!--</div>-->
+            <!--</li>-->
+
+
+        </ul>
+    </div>
+
+</div>
+
+<div class="bottom-nav-bk bottom_nav" style="display:block"></div>
+<div class="bottom-nav bottom_nav" style="display:block">
+    <div class="item article-item" id="article-item">
+        <div class="item-warp">
+            <img class="icon-pic" src="res/news_nor_0.png" width="20px" height="20px" alt="#"/>
+            <div class="icon-text">
+                资讯
+            </div>
+        </div>
+    </div>
+    <div class="item topic-item" id="topic-item">
+        <div class="item-warp">
+            <img class="icon-pic" src="res/topic_nor_1.png" width="20px" height="20px" alt="#"/>
+            <div class="icon-text">
+                话题
+            </div>
+        </div>
+    </div>
+    <div class="item shopping-item" id="shopping-item">
+        <div class="item-warp">
+            <img class="icon-pic" src="res/shopping_nor_2.png" width="20px" height="20px" alt="#"/>
+            <div class="icon-text">
+                商城
+            </div>
+        </div>
+    </div>
+    <div class="item mine-item" id="mine-item">
+        <div class="item-warp">
+            <img class="icon-pic" src="res/user_nor_3.png" width="20px" height="20px" alt="#"/>
+            <div class="icon-text">
+                我的
+            </div>
+        </div>
+    </div>
+</div>
+<script src="lib/zepto.min.js"></script>
+<script>
+    window.jQuery = $;
+</script>
+<script src="js/jquery.base64.js"></script>
+<script src="js/jquery.jsonp.js"></script>
+<script>
+    (function(){
+        'use strict';
+        var Util = (function() {
+            var prefix = 'ficiton_reader_';
+            var StorageGetter = function(key) {
+                return localStorage.getItem(prefix + key);
+            }
+            var StorageSetter = function(key, val) {
+                return localStorage.setItem(prefix + key, val);
+            }
+            //数据解密
+            function getBSONP(url, callback) {
+                return $.jsonp({
+                    url : url,
+                    cache : true,
+                    callback : "result",
+                    success : function(result) {
+                        var data = $.base64.decode(result);
+                        var json = decodeURIComponent(escape(data));
+                        callback(json);
+                    }
+                });
+
+            };
+
+            return {
+                getBSONP : getBSONP,
+                StorageGetter : StorageGetter,
+                StorageSetter : StorageSetter
+            }
+        })();
+        //todo 获取资讯分类
+ //       https://open.dev.mtcentcloud.com/listArticleCategories?product_guid=a5c72d76-16dc-4bb6-b6af-f2e562b1839b&parent_id=132
+        function getcategroies(){
+            var titleLists = $('.navititle');
+            $.ajax({
+                async : false,
+                url : 'https://open.mtcentcloud.com/listArticleCategories',
+                type : "GET",
+                dataType : 'jsonp',
+                jsonp : 'callback',
+                data : {
+                    product_guid : 'a5c72d76-16dc-4bb6-b6af-f2e562b1839b',
+                    parent_id:'132'
+                },
+                timeout : 5000,
+                success : function(obj) {
+                    var arr = obj.result;
+//                    alert(arr.length);
+                    var liarr = [];
+                    for (var i = 0; i < arr.length; i++) {
+                        var ali =  $("<li><a></a></li>").addClass();
+                        liarr.push(ali);
+                    }
+                    var parul = $('#navi-headerscroll');
+                    var atIndex;
+                    $.each(arr,function(index,i){
+                        if(index == 0){
+                            listArticlesByCategory(parseInt(i.id),1);
+                        }
+                        parul.append(liarr[index]);
+                        $(liarr[index]).find('a').text(i.name);
+                        if(index ==0){
+                            $(liarr[0]).addClass("liselected");
+                            $(liarr[0]).find('a').css({'color':'#fa7e00'});
+                        }
+                        $(liarr[index]).find('a').click(function(){
+                            //liselected
+                            var rlis = $('#navi-headerscroll').find('li');
+                            rlis.each(function(index){
+                               $(this).removeClass("liselected");
+                                $(this).find('a').css({'color':'#000000'});
+
+                            });
+                            listArticlesByCategory(i.id,1);
+                            $(this).parent().addClass("liselected");
+                            $(this).css({'color':'#fa7e00'});
+                        });
+                    });
+
+
+                }
+            });
+        }
+        //https://open.dev.mtcentcloud.com/listRecommendArticles?product_guid=a5c72d76-16dc-4bb6-b6af-f2e562b1839b&user_guid=2850f547-7a66-4f2c-b808-1b88b0cdcc81&page=1&page_size=
+        //https://open.dev.mtcentcloud.com/listArticlesByCategory?product_guid=a5c72d76-16dc-4bb6-b6af-f2e562b1839b&category_id=7&page=1&page_size=
+        //todo 获取资讯分类列表
+        function listArticlesByCategory(catid, page){
+//           var listurl = 'https://open.dev.mtcentcloud.com/listArticlesByCategory?product_guid=a5c72d76-16dc-4bb6-b6af-f2e562b1839b&category_id='+ catid +'&page=' + page +'&page_size='
+            $.ajax({
+               async:true,
+                url :'https://open.mtcentcloud.com/listArticlesByCategory',
+                type :"GET",
+                dataType : 'jsonp',
+                jsonp:'callback',
+                data:{
+                    product_guid :'a5c72d76-16dc-4bb6-b6af-f2e562b1839b',
+                    user_guid : '2850f547-7a66-4f2c-b808-1b88b0cdcc81',
+                    category_id : catid,
+                    page : 1,
+                    page_size : 20
+                },
+                timeout : 5000,
+                success : function(obj) {
+                    if (parseInt(obj.code) == 200){
+                        var arr = obj.result;
+                        var liarr = [];
+                        for(var i =0;i < arr.length;i++){
+                            var ali = $("<li><div class='cell-left'><img/></div><div class='cell-right'><h4></h4><p></p></div></li>");
+                            liarr.push(ali);
+                        }
+                        var parlist = $('#article-list-ul');
+
+                        parlist.children().remove();
+                        $.each(arr, function(index, i){
+                            parlist.append(liarr[index]);
+                            //src="res/news_nor_0.png" width="20px" height="20px"
+                            $(liarr[index]).find('img').attr({'src': i.pictureUrl,'width':'90px','height':'66px'});
+                            $(liarr[index]).find('h4').text(i.listTitle);
+                            $(liarr[index]).find('p').text(i.brief);
+                            $(liarr[index]).click(function(){
+                               pushToartileDetailByID(i.guid);
+
+
+                            });
+
+                        });
+                    }
+                }
+            });
+        }
+        //todo 跳转到详情页
+        //host http://m.mtcentcloud.com/html/article/articleContent.html
+        //http://m.dev.mtcentcloud.com/html/article/articleContent.html?article_guid=4e5cdabd-bfe5-43b7-a505-a8a6f405668a&product_guid=a5c72d76-16dc-4bb6-b6af-f2e562b1839b
+        function pushToartileDetailByID(articleID){
+            window.location.href = 'articleDetail.html?article_guid=' + articleID + '&product_guid=a5c72d76-16dc-4bb6-b6af-f2e562b1839b';
+
+        }
+
+        function main(){
+            getcategroies();
+
+            $('.item-warp').each(function(index){
+                var obj = obj;
+                var cout;
+                var iconN = ['news','topic','shopping','user'];
+                var alltext = $('.icon-text');
+                var allicon = $('.icon-pic');
+                if(index == 0){
+                    var text = alltext[0];
+                    var icon = allicon[0];
+                    $(text).css('color','#fa7e00');
+                    var curiconurl = './res/' + iconN[0] + '_hlt_'+ 0 +'.png';
+                    $(icon).attr({"src":curiconurl});
+                }
+                $(this).click(function(){
+                    cout = index;
+                    alltext.each(function(index){
+                        $(this).css('color','#666666');
+                    })
+                    allicon.each(function(index){
+                        var iconurl = './res/'+ iconN[index] +'_nor_' + index + '.png';
+                        $(this).attr({"src":iconurl});
+                    })
+                    var text = $(this).find('.icon-text');
+                    var icon = $(this).find('.icon-pic');
+                    $(text[0]).css('color','#fa7e00');
+                    var curiconurl = './res/' + iconN[cout] + '_hlt_'+ cout +'.png';
+                    $(icon[0]).attr({"src":curiconurl});
+
+
+                })
+            })
+        }
+        return main();
+
+    })();
+
+</script>
+
+
+
+
+</body>
+</html>
